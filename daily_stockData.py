@@ -53,11 +53,13 @@ def get_dailyData(code):
     print(low_value)
     print(close_value)
     print(volume_value)
-    return code, date_value, open_value, high_value, low_value, volume_value 
+    return code, date_value, open_value, high_value, low_value, close_value, volume_value 
 
 
 def daily_generator(code_range):
-    for code in code_range:
+    for code_in_tuple in code_range:
+        code = code_in_tuple[0]
+
         daily = get_dailyData(code)
 
         if daily:
@@ -88,12 +90,12 @@ def select_brands_to_db():
 
     connection = psycopg2.connect("host=192.168.3.10 port=5432 dbname=stock_information user=postgres password=postgres")
     connection.get_backend_pid()
-    cur = connection.cursor()
+    with connection.cursor() as cur:
 
-    sql = "SELECT code FROM brands"
-    cur.execute(sql)
-    return cur.fetchall()
+        sql = "SELECT code FROM brands"
+        cur.execute(sql)
+        return cur.fetchall()
 
 if __name__ == '__main__':
     args = sys.argv
-    insert_daily_to_db(range(int(args[1]), int(args[2])))
+    insert_daily_to_db(select_brands_to_db())

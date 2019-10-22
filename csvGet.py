@@ -24,27 +24,6 @@ def download_stock_csv(code_range, save_dir):
     url = 'https://www.yahoo.co.jp/'
     driver.get(url)
 
-    #ログインボタン
-    #Login > div > p._1tJgZl7jyxpfZIocuTRj5W > a > span
-    # driver.find_element_by_css_selector('#Login > div > p._1tJgZl7jyxpfZIocuTRj5W > a > span').click()
-
-    #ID入力画面
-    #username
-    # driver.find_element_by_id('username').send_keys("id")
-
-    #button
-    #btnNext
-    # driver.find_element_by_id('btnNext').click()
-
-    #パスワード入力画面
-    #passwd
-    # driver.find_element_by_id('passwd').send_keys("pass")
-
-    #button
-    #btnSubmit
-    # driver.find_element_by_id('btnSubmit').click()
-
-
     #ここで手動でログインを行う
     input('After login, press Enter:  ')
 
