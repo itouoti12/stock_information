@@ -92,7 +92,7 @@ def select_brands_to_db():
     connection.get_backend_pid()
     with connection.cursor() as cur:
 
-        sql = "SELECT code FROM brands"
+        sql = "SELECT code FROM brands WHERE deleted = 0"
         cur.execute(sql)
         return cur.fetchall()
 
